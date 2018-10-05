@@ -11,6 +11,8 @@ Copy the contents of the [zsh-sticky-prompt.zshrc](zsh-sticky-prompt.zshrc) file
 <kbd>CTRL</kbd> + <kbd>S</kbd> activates the sticky prompt feature based on the current line input.  Pressing again (without modifying the prompt) it will delete the stickiness, as does pressing <kbd>Return</kbd> on an empty line.
 
 ## Examples
+### Sticky prompt on the end of a line
 ![Sticking on the end of a line](./examples/eol.gif)
 
+### Sticky prompt in the middle of a line
 ![Sticking in the middle of a line](./examples/mol.gif)
