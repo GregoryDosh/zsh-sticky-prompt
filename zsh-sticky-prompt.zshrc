@@ -1,7 +1,7 @@
 local ZLE_STICKY_PROMPT_LEFT=""
 local ZLE_STICKY_PROMPT_RIGHT=""
 
-stick-prompt-zle-line-init() {
+sticky-prompt-zle-line-init() {
   LBUFFER="$ZLE_STICKY_PROMPT_LEFT"
   RBUFFER="$ZLE_STICKY_PROMPT_RIGHT"
   zle _zle-line-init
@@ -46,7 +46,7 @@ sticky-prompt-accept-line() {
 
 functions[_zle-line-init]=$functions[zle-line-init]
 zle -N _zle-line-init
-zle -N zle-line-init stick-prompt-zle-line-init
+zle -N zle-line-init sticky-prompt-zle-line-init
 zle -N sticky-prompt-set
 zle -N accept-line sticky-prompt-accept-line
 bindkey '^S' sticky-prompt-set
