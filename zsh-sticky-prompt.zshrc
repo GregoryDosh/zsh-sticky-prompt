@@ -1,5 +1,5 @@
-local ZLE_STICKY_PROMPT_LEFT=""
-local ZLE_STICKY_PROMPT_RIGHT=""
+ZLE_STICKY_PROMPT_LEFT=""
+ZLE_STICKY_PROMPT_RIGHT=""
 
 sticky-prompt-zle-line-init() {
   LBUFFER="$ZLE_STICKY_PROMPT_LEFT"
@@ -24,8 +24,8 @@ sticky-prompt-set() {
   ZLE_STICKY_PROMPT_LEFT="$LBUFFER"
   ZLE_STICKY_PROMPT_RIGHT="$RBUFFER"
 
-  if ([[ -n "$ZLE_STICKY_PROMPT_LEFT" ]] && [[ "$ZLE_STICKY_PROMPT_PREV_LEFT" != "$ZLE_STICKY_PROMPT_LEFT" ]]) ||
-        ([[ -n "$ZLE_STICKY_PROMPT_RIGHT" ]] && [[ "$ZLE_STICKY_PROMPT_PREV_RIGHT" != "$ZLE_STICKY_PROMPT_RIGHT" ]]); then
+  if { [[ -n "$ZLE_STICKY_PROMPT_LEFT" ]] && [[ "$ZLE_STICKY_PROMPT_PREV_LEFT" != "$ZLE_STICKY_PROMPT_LEFT" ]]; } ||
+        { [[ -n "$ZLE_STICKY_PROMPT_RIGHT" ]] && [[ "$ZLE_STICKY_PROMPT_PREV_RIGHT" != "$ZLE_STICKY_PROMPT_RIGHT" ]]; }; then
     zle -M "Sticky prompt $ZLE_STICKY_PROMPT_LEFT|$ZLE_STICKY_PROMPT_RIGHT"
   else
     ZLE_STICKY_PROMPT_LEFT=""
@@ -39,12 +39,12 @@ sticky-prompt-accept-line() {
     if [[ -z "$BUFFER" ]] && [[ -n "$ZLE_STICKY_PROMPT_LEFT" ]]; then
       ZLE_STICKY_PROMPT_LEFT=""
       ZLE_STICKY_PROMPT_RIGHT=""
-      echo -n "\nRemoved sticky prompt."
+      zle -M "Removed sticky prompt."
     fi
     zle .accept-line
 }
 
-functions[_zle-line-init]=$functions[zle-line-init]
+functions[_zle-line-init]="${functions[zle-line-init]}"
 zle -N _zle-line-init
 zle -N zle-line-init sticky-prompt-zle-line-init
 zle -N sticky-prompt-set
